@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background-color: #faf8f3;
+    color: #0d1b2a;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #e9e5d8; border-radius: 2px; }
+}
+
+@layer utilities {
+  .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+
+  .shadow-card  { box-shadow: 0 1px 3px rgba(13,27,42,0.06), 0 4px 16px rgba(13,27,42,0.04); }
+  .shadow-lift  { box-shadow: 0 2px 8px rgba(13,27,42,0.08), 0 8px 24px rgba(13,27,42,0.06); }
+  .shadow-float { box-shadow: 0 8px 32px rgba(13,27,42,0.12), 0 2px 8px rgba(13,27,42,0.06); }
+
+  .card { @apply bg-white rounded-[14px] border border-[#e9e5d8] shadow-card overflow-hidden; }
+  .card-head { @apply flex items-center gap-3 px-5 py-4 border-b border-[#f3f0e8]; }
+  .card-body { @apply p-5; }
+
+  .kpi { @apply bg-white rounded-[14px] border border-[#e9e5d8] shadow-card p-5 cursor-default transition-all duration-200 hover:shadow-lift hover:-translate-y-px; }
+
+  .pill-bad  { @apply inline-flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f7e8ea] text-[#b03040]; }
+  .pill-good { @apply inline-flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#e8f3ee] text-[#2e6b55]; }
+  .pill-warn { @apply inline-flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f8f2e0] text-[#8a6520]; }
+  .pill-dim  { @apply inline-flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#f3f0e8] text-[#8a9aaa]; }
+}
+
+/* Page fade-in animation */
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+.page-enter { animation: fadeup 0.22s ease both; }
+
+/* Pulse dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.pulse-dot { animation: pulse-dot 2.5s ease infinite; }
